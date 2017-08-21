@@ -5,29 +5,31 @@ public class MyNowDate {
 
     private static Logger log = Logger.getLogger(MyNowDate.class.getName());
 
-    private int chekHours (){
 
-        log.info("method chekHours is OK");
+    public int checkHours(){
+
+        log.info("method checkHours is OK");
 
         return new Date().getHours();
     }
 
-    public void printString (){
+    public String printString (int num){
 
         log.info("method printString is OK.");
 
-        int res = chekHours();
+        String result = null;
 
-        if (res > 6 && res < 9){
-            System.out.println("Good morning, World!");
-        }else if( res > 9 && res < 19){
-            System.out.println("Good day, World!");
-        }else if (res > 19 && res < 23){
-            System.out.println("Good evening, World!");
-        }else if (res > 23 && res < 6){
-            System.out.println("Good night, World!");
+        if (num > 6 && num < 9){
+            result = "Good morning, World!";
+        }else if( num > 9 && num < 19){
+            result = "Good day, World!";
+        }else if (num > 19 && num < 23){
+            result = "Good evening, World!";
+        }else if (num > 23 && num < 6){
+            result = "Good night, World!";
         }
 
+        return result;
     }
 
 }
