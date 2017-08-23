@@ -4,18 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class JUnitTest {
-    
-    private MyNowDate test;
 
-    @Before
-    public void setUp() {
-        test = new MyNowDate();
-    }
-
-    @After
-    public void close() {
-        test = null;
-    }
+    private MyNowDate test = new MyNowDate();
 
     @Test
     public void testEquals_1() {
@@ -35,4 +25,15 @@ public class JUnitTest {
 
     }
 
+    @Test
+    public void testEquals_4() {
+        Assert.assertEquals("Good morning, World!", test.printString(6));
+
+    }
+
+    @Test
+    public void testEquals_5() {
+        Assert.assertEquals("Good night, World!", test.printString(23));
+
+    }
 }
