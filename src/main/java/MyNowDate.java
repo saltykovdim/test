@@ -1,35 +1,19 @@
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
-import java.util.Properties;
 
 public class MyNowDate {
-    private static Logger log = Logger.getLogger(MyNowDate.class.getName());
+    private Logger log = Logger.getLogger(MyNowDate.class.getName());
 
     private String getMessage (String mes){
-        String message = null;
-        final String PATH_TO_PROPERTIES = "src/main/resources/config.properties";
-        FileInputStream fileInputStream = null;
-        Properties prop = new Properties();
 
-        try {
-            fileInputStream = new FileInputStream(PATH_TO_PROPERTIES);
-            prop.load(fileInputStream);
-            message = prop.getProperty(mes);
+        Locale locale = Locale.getDefault();
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("config", locale);
+        mes = resourceBundle.getString(mes);
+log.info("method getMessage return mes: " + mes);
 
-        }catch (IOException e) {
-            System.out.println("Ошибка в программе: файл " + PATH_TO_PROPERTIES + " не обнаружено");
-            log.info("The method getMessage worked with an error");
-        }finally {
-            try {
-                fileInputStream.close();
-            } catch (IOException e) {
-                log.info("FileInputStream close with error.");
-            }
-        }
-
-        return message;
+        return mes;
     }
 
     public int checkHours(){
@@ -45,7 +29,7 @@ public class MyNowDate {
 
     public String printString (int num){
 
-        String result = null;
+        String result;
 
         if (num >= 6 && num <= 9){
             result = getMessage("mesMorning");
